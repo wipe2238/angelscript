@@ -85,7 +85,7 @@ jobs:
              fi
           fi
 
-          cmake -B Build -G "${{ matrix.cfg.generator }}" $platform $toolchain 2>&1
+          cmake -B Build -S sdk/angelscript/projects/cmake -G "${{ matrix.cfg.generator }}" $platform $toolchain 2>&1
           cmake --build Build --config Release 2>&1
     env:
      CC:  ${{ matrix.cfg.cc }}${{ matrix.cfg.ver }}
