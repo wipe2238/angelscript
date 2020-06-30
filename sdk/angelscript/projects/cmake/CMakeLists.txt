@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(angelscript)
 
 option(BUILD_SHARED_LIBS "Build shared library" OFF)
-#option(AS_NO_EXCEPTIONS "Disable exception handling in script context" OFF)
+option(AS_NO_EXCEPTIONS "Disable exception handling in script context" OFF)
 
 #if(MSVC)
 #    option(MSVC_COMPILE_FLAGS "Compiler flags to use with MSVC" "/MP")
@@ -138,9 +138,9 @@ endif()
 
 target_compile_definitions(${ANGELSCRIPT_LIBRARY_NAME} PRIVATE -DANGELSCRIPT_EXPORT -D_LIB)
 
-#if(AS_NO_EXCEPTIONS)
-#	target_compile_definitions(${ANGELSCRIPT_LIBRARY_NAME} PRIVATE AS_NO_EXCEPTIONS)
-#endif()
+if(AS_NO_EXCEPTIONS)
+	target_compile_definitions(${ANGELSCRIPT_LIBRARY_NAME} PRIVATE AS_NO_EXCEPTIONS)
+endif()
 
 # Fix x64 issues on Linux
 if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "x86_64" AND UNIX AND NOT APPLE)
